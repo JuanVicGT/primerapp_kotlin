@@ -84,6 +84,8 @@ fun Content() {
         Space()
         Texto(texto = "Compose")
         Space()
+        Texto(texto = "Compose x2")
+        Space()
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
