@@ -3,6 +3,7 @@ package com.example.primeraapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,8 +21,18 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +47,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Content()
+            // ContentBeforeClass38()
+            ContentAfterClass38()
         }
     }
 }
@@ -52,6 +64,90 @@ class MainActivity : ComponentActivity() {
 *
 * */
 
+@Composable
+@Preview(showBackground = true)
+fun ContentAfterClass38() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        NormalButton()
+        NormalButton2()
+        NormalButton3()
+        NormalButton4()
+        BotonIcono()
+        BotonSwitch()
+        DarkMode()
+    }
+}
+
+@Composable
+fun NormalButton() {
+    Button(onClick = { /*TODO*/ }, enabled = false) {
+        Text(text = "Mi Botón", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun NormalButton2() {
+    Button(
+        onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Red
+        )
+    ) {
+        Text(text = "Mi Botón", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun NormalButton3() {
+    TextButton(onClick = { /*TODO*/ })
+    { Text(text = "Mi Botón", fontSize = 30.sp) }
+}
+
+@Composable
+fun NormalButton4() {
+    OutlinedButton(onClick = { /*TODO*/ }, border = BorderStroke(3.dp, Color.Blue))
+    { Text(text = "Mi Botón", fontSize = 30.sp) }
+}
+
+@Composable
+fun BotonIcono() {
+    IconButton(onClick = { /*TODO*/ }) {
+        Icon(
+            imageVector = Icons.Filled.Home, contentDescription = "Icono", tint = Color.Red,
+            modifier = Modifier.size(50.dp)
+        )
+    }
+}
+
+@Composable
+fun BotonSwitch() {
+    var switched by remember { mutableStateOf(false) }
+
+    Switch(checked = switched, onCheckedChange = { switched = it },
+        colors = SwitchDefaults.colors(
+            checkedThumbColor = Color.Blue,
+            checkedTrackColor = Color.Green,
+            uncheckedThumbColor = Color.Red,
+            uncheckedTrackColor = Color.Magenta
+        )
+        )
+}
+
+@Composable
+fun DarkMode() {
+    Button(onClick = { /*TODO*/ }) {
+        Icon(imageVector = Icons.Default.Star, contentDescription = "Dark Mode")
+        Spacer(modifier = Modifier.width(5.dp))
+        Text(text = "Dark Mode", fontSize = 30.sp)
+    }
+}
+
+/** ======== Before class 38 ================== */
+
 val colors = listOf(
     Color.Red,
     Color.Yellow,
@@ -66,8 +162,7 @@ val colors = listOf(
 val name = "Me Gusta"
 
 @Composable
-@Preview(showBackground = true)
-fun Content() {
+fun ContentBeforeClass38() {
     var likes by remember {
         mutableStateOf(0)
     }
