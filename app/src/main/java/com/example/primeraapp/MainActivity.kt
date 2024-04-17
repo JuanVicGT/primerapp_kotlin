@@ -30,7 +30,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -44,14 +46,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.primeraapp.ui.theme.PrimeraAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // ContentBeforeClass38()
-            // ContentAfterClass38()
-            ContentAfterClass43()
+            val darkMode = remember { mutableStateOf(false) }
+
+            PrimeraAppTheme(darkTheme = darkMode.value) {
+                Surface (
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // ContentBeforeClass38()
+                    ContentAfterClass38(darkMode = darkMode)
+                }
+            }
         }
     }
 }
@@ -67,34 +78,9 @@ class MainActivity : ComponentActivity() {
 *
 * */
 
-/** ======== After class 43 ================== */
-
 @Composable
 @Preview(showBackground = true)
-fun ContentAfterClass43() {
-    FloatinAction2()
-}
-
-@Composable
-fun FloatinAction2() {
-    FloatingActionButton(
-        onClick = { /*TODO*/ },
-        containerColor = Color.Blue,
-        contentColor = Color.White
-    ) {
-        Icon(
-            imageVector = Icons.Filled.Add, contentDescription = "",
-            modifier = Modifier.size(30.dp)
-        )
-    }
-}
-
-
-/** ======== After class 38 ================== */
-
-@Composable
-@Preview(showBackground = true)
-fun ContentAfterClass38() {
+fun ContentAfterClass38(darkMode: MutableState<Boolean>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -102,12 +88,20 @@ fun ContentAfterClass38() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         NormalButton()
+        Space()
         NormalButton2()
+        Space()
         NormalButton3()
+        Space()
         NormalButton4()
+        Space()
         BotonIcono()
+        Space()
         BotonSwitch()
-        DarkMode()
+        Space()
+        DarkMode(darkMode = darkMode)
+        Space()
+        BotonFlotante()
     }
 }
 
@@ -167,11 +161,25 @@ fun BotonSwitch() {
 }
 
 @Composable
-fun DarkMode() {
-    Button(onClick = { /*TODO*/ }) {
+fun DarkMode(darkMode: MutableState<Boolean>) {
+    Button(onClick = { darkMode.value = !darkMode.value }) {
         Icon(imageVector = Icons.Default.Star, contentDescription = "Dark Mode")
         Spacer(modifier = Modifier.width(5.dp))
         Text(text = "Dark Mode", fontSize = 30.sp)
+    }
+}
+
+@Composable
+fun BotonFlotante() {
+    FloatingActionButton(
+        onClick = { /*TODO*/ },
+        containerColor = Color.Blue,
+        contentColor = Color.White
+    ) {
+        Icon(
+            Icons.Filled.Add, contentDescription = null,
+            modifier = Modifier.size(30.dp)
+        )
     }
 }
 
