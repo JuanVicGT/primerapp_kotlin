@@ -22,10 +22,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
@@ -48,7 +50,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             // ContentBeforeClass38()
-            ContentAfterClass38()
+            // ContentAfterClass38()
+            ContentAfterClass43()
         }
     }
 }
@@ -63,6 +66,31 @@ class MainActivity : ComponentActivity() {
 * 5. De escucha = onKeyEvent
 *
 * */
+
+/** ======== After class 43 ================== */
+
+@Composable
+@Preview(showBackground = true)
+fun ContentAfterClass43() {
+    FloatinAction2()
+}
+
+@Composable
+fun FloatinAction2() {
+    FloatingActionButton(
+        onClick = { /*TODO*/ },
+        containerColor = Color.Blue,
+        contentColor = Color.White
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Add, contentDescription = "",
+            modifier = Modifier.size(30.dp)
+        )
+    }
+}
+
+
+/** ======== After class 38 ================== */
 
 @Composable
 @Preview(showBackground = true)
@@ -127,14 +155,15 @@ fun BotonIcono() {
 fun BotonSwitch() {
     var switched by remember { mutableStateOf(false) }
 
-    Switch(checked = switched, onCheckedChange = { switched = it },
+    Switch(
+        checked = switched, onCheckedChange = { switched = it },
         colors = SwitchDefaults.colors(
             checkedThumbColor = Color.Blue,
             checkedTrackColor = Color.Green,
             uncheckedThumbColor = Color.Red,
             uncheckedTrackColor = Color.Magenta
         )
-        )
+    )
 }
 
 @Composable
@@ -239,7 +268,7 @@ fun Circulo(color: Color) {
     )
 }
 
-@Composable 
+@Composable
 fun Space() {
     Spacer(modifier = Modifier.height(5.dp))
 }
